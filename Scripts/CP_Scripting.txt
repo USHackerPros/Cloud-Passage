@@ -1,0 +1,27 @@
+Author: Cody Mercer
+
+**********************
+*****CP Scripting***** 
+**********************
+
+
+# add CloudPassage repository
+echo -e '[cloudpassage]\nname=CloudPassage\nbaseurl=https://packages.cloudpassage.com/redhat/$basearch\ngpgcheck=1' | sudo tee /etc/yum.repos.d/cloudpassage.repo > /dev/null
+
+# import CloudPassage public key
+sudo rpm --import https://packages.cloudpassage.com/cloudpassage.packages.key
+
+# update yum repositories
+sudo yum check-update > /dev/null
+
+# install the daemon
+sudo yum -y install cphalo
+
+# configure agent key
+sudo /opt/cloudpassage/bin/configure --agent-key=e2b12d20ad419438ffc5ab53f5cb93e8 
+
+# start the daemon for the first time
+sudo /etc/init.d/cphalod start
+
+http://www.codymercersportfolio.com/
+https://www.linkedin.com/in/cody-mercer-0b862033
